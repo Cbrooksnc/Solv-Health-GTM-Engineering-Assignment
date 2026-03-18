@@ -23,17 +23,50 @@ pip install -r requirements.txt
 ```
 
 ### 2. Configure environment
+
+> Skip this step if you only want to run `--demo` (no briefs). API keys are only needed for brief generation and live signal detection.
+
+Create a `.env` file in the project root:
+
+**Mac/Linux:**
 ```bash
 cp .env.example .env
-# Edit .env and add your API keys
 ```
 
+**Windows:**
+```powershell
+copy .env.example .env
+```
+
+Then open `.env` in any text editor and fill in the keys you need:
+
+```
+ANTHROPIC_API_KEY=sk-ant-...   # required for --briefs
+SERPAPI_KEY=...                 # required for live mode
+```
+
+Get keys here:
+- `ANTHROPIC_API_KEY` — [console.anthropic.com](https://console.anthropic.com) (requires credits)
+- `SERPAPI_KEY` — [serpapi.com](https://serpapi.com) (free tier available)
+
 ### 3. Run
+
+First, make sure you're in the project directory:
+
+**Mac/Linux:**
+```bash
+cd Solv-Health-GTM-Engineering-Assignment
+```
+
+**Windows:**
+```powershell
+cd C:\Users\<your-username>\Solv-Health-GTM-Engineering-Assignment
+```
 
 **Demo mode** (no API keys required):
 ```bash
 python main.py --demo
-python main.py --demo --briefs   # with AI-written briefs
+python main.py --demo --briefs   # with AI-written briefs (requires ANTHROPIC_API_KEY)
 ```
 
 **Live mode** (requires `SERPAPI_KEY`):
