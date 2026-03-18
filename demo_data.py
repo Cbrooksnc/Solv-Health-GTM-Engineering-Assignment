@@ -1,5 +1,5 @@
 """
-Demo mode dataset — pre-computed signal results for 3 real urgent care accounts.
+Demo mode dataset - pre-computed signal results for 3 real urgent care accounts.
 Runs without any API keys. Uses realistic signal scores based on actual research.
 """
 from signals.base import SignalResult
@@ -29,7 +29,7 @@ DEMO_SIGNALS = {
             score=0.72,
             evidence=[
                 "MedRite Urgent Care is experiencing integration failures between Zocdoc scheduling and eClinicalWorks, causing appointment data loss and double-bookings at multiple NYC locations.",
-                "Staff forums report ongoing eCW sync issues: 'The system loses appointments booked through Zocdoc at least 3x per week — front desk has to manually reconcile every morning.'",
+                "Staff forums report ongoing eCW sync issues: 'The system loses appointments booked through Zocdoc at least 3x per week - front desk has to manually reconcile every morning.'",
                 "MedRite IT team posted a job listing for 'EHR Integration Specialist' to address persistent Zocdoc/eCW API failures.",
             ],
             confidence="high",
@@ -58,8 +58,8 @@ DEMO_SIGNALS = {
             signal_name="job_postings",
             score=0.80,
             evidence=[
-                "Indeed shows 12 active front desk and medical receptionist openings across MedRite NYC locations — 4 marked 'Urgently Hiring'.",
-                "Job descriptions emphasize 'high-volume patient check-in' and 'multi-system proficiency' — signals of current workflow pain.",
+                "Indeed shows 12 active front desk and medical receptionist openings across MedRite NYC locations - 4 marked 'Urgently Hiring'.",
+                "Job descriptions emphasize 'high-volume patient check-in' and 'multi-system proficiency' - signals of current workflow pain.",
                 "RCM Analyst posting specifically mentions 'resolving patient data discrepancies between Zocdoc and eCW' as primary responsibility.",
             ],
             confidence="high",
@@ -69,7 +69,7 @@ DEMO_SIGNALS = {
             signal_name="patient_reviews",
             score=0.88,
             evidence=[
-                "134+ Google reviews mention check-in delays: 'Waited 20 minutes just to be checked in — they said the system was down again.'",
+                "134+ Google reviews mention check-in delays: 'Waited 20 minutes just to be checked in - they said the system was down again.'",
                 "'Called 6 times before someone picked up. When I finally got through, they had no record of my appointment even though I got a confirmation email.'",
                 "Yelp reviews: 'The front desk staff are overwhelmed. You can see them juggling three different screens trying to find your info.'",
             ],
@@ -103,7 +103,7 @@ DEMO_SIGNALS = {
             signal_name="ehr_migration",
             score=0.85,
             evidence=[
-                "Xpress Wellness operates on both Experity and eClinicalWorks simultaneously — a dual-EHR environment creating significant workflow fragmentation across OK/TX locations.",
+                "Xpress Wellness operates on both Experity and eClinicalWorks simultaneously - a dual-EHR environment creating significant workflow fragmentation across OK/TX locations.",
                 "Employee reviews describe 'having to enter the same patient twice' and a 'constant battle between the two systems' during patient intake.",
                 "Xpress Wellness recently rebranded from Integrity Urgent Care, and the merger left locations on different EHR platforms with no unified patient record.",
             ],
@@ -124,7 +124,7 @@ DEMO_SIGNALS = {
             score=0.90,
             evidence=[
                 "Integrity Urgent Care was acquired and rebranded to Xpress Wellness Urgent Care in a private equity-backed roll-up targeting Oklahoma and Texas markets.",
-                "The merger combined two urgent care chains operating different EHR systems — a classic integration pain point for Solv's ICP.",
+                "The merger combined two urgent care chains operating different EHR systems - a classic integration pain point for Solv's ICP.",
                 "Xpress Wellness is backed by a regional PE firm pursuing a multi-state expansion strategy across the Southwest.",
             ],
             confidence="high",
@@ -134,9 +134,9 @@ DEMO_SIGNALS = {
             signal_name="job_postings",
             score=0.92,
             evidence=[
-                "28 active front desk and call center postings across Oklahoma and Texas Xpress Wellness locations — the highest concentration of any regional urgent care chain.",
-                "Multiple listings for 'Call Center Representative — Dual System Experience Required (Experity + eCW)' indicating the dual-EHR burden is driving turnover.",
-                "'Urgently Hiring' tags on front desk roles in OKC, Tulsa, and Dallas markets — pattern consistent with high turnover driven by workflow friction.",
+                "28 active front desk and call center postings across Oklahoma and Texas Xpress Wellness locations - the highest concentration of any regional urgent care chain.",
+                "Multiple listings for 'Call Center Representative - Dual System Experience Required (Experity + eCW)' indicating the dual-EHR burden is driving turnover.",
+                "'Urgently Hiring' tags on front desk roles in OKC, Tulsa, and Dallas markets - pattern consistent with high turnover driven by workflow friction.",
             ],
             confidence="high",
             sources=["https://www.indeed.com/cmp/Xpress-Wellness-Urgent-Care/jobs", "https://www.linkedin.com/company/xpress-wellness"],
@@ -146,8 +146,8 @@ DEMO_SIGNALS = {
             score=0.75,
             evidence=[
                 "Google reviews: 'They checked me in twice and seemed confused about which system had my records. Left after 45 minutes without being seen.'",
-                "Employee reviews on Indeed: 'Organized chaos — you're managing two EHRs for the same patient and neither talks to the other.'",
-                "'The wait time is always longer than expected because the check-in process takes so long — front desk is clearly struggling with their system.'",
+                "Employee reviews on Indeed: 'Organized chaos - you're managing two EHRs for the same patient and neither talks to the other.'",
+                "'The wait time is always longer than expected because the check-in process takes so long - front desk is clearly struggling with their system.'",
             ],
             confidence="high",
             sources=["https://g.co/kgs/XpressWellness", "https://www.glassdoor.com/Reviews/Xpress-Wellness-Reviews"],
@@ -165,7 +165,7 @@ DEMO_SIGNALS = {
             signal_name="ehr_confirmation",
             score=1.0,
             evidence=[
-                "Xpress Wellness locations confirmed on both Experity (former Integrity locations) and eClinicalWorks (former Xpress locations) — dual ICP EHR.",
+                "Xpress Wellness locations confirmed on both Experity (former Integrity locations) and eClinicalWorks (former Xpress locations) - dual ICP EHR.",
                 "Job postings explicitly list 'Experity and/or eClinicalWorks experience' as required qualifications.",
             ],
             confidence="high",
@@ -179,7 +179,7 @@ DEMO_SIGNALS = {
             signal_name="ehr_migration",
             score=0.40,
             evidence=[
-                "MainStreet requires patients to create and log in to an athenahealth patient portal before completing check-in — a multi-step process that creates significant friction for urgent care walk-ins.",
+                "MainStreet requires patients to create and log in to an athenahealth patient portal before completing check-in - a multi-step process that creates significant friction for urgent care walk-ins.",
                 "Patient feedback indicates the portal requirement is a consistent source of complaints and delays, especially for first-time visitors.",
             ],
             confidence="medium",
@@ -189,8 +189,8 @@ DEMO_SIGNALS = {
             signal_name="leadership_hire",
             score=0.82,
             evidence=[
-                "COO Wendy Morell joined MainStreet Family Care with a background in Lean healthcare operations — actively evangelizing waste reduction and process improvement initiatives.",
-                "Morell's LinkedIn indicates focus on 'reducing non-clinical burden on clinical staff' and 'streamlining patient flow' — directly aligned with Solv's value prop.",
+                "COO Wendy Morell joined MainStreet Family Care with a background in Lean healthcare operations - actively evangelizing waste reduction and process improvement initiatives.",
+                "Morell's LinkedIn indicates focus on 'reducing non-clinical burden on clinical staff' and 'streamlining patient flow' - directly aligned with Solv's value prop.",
                 "New Regional Operations Manager role posted in Q1 2025, indicating organizational scaling and a push to standardize operations across Southeast locations.",
             ],
             confidence="high",
@@ -210,8 +210,8 @@ DEMO_SIGNALS = {
             score=0.68,
             evidence=[
                 "14 front desk and patient services coordinator postings across Alabama, Mississippi, and Georgia markets.",
-                "Regional Manager posting explicitly mentions 'improving staff retention' as a primary objective — signals operational stress at the clinic level.",
-                "Job descriptions emphasize 'managing high patient volume' and 'proficiency with patient portal systems' — pointing to intake friction.",
+                "Regional Manager posting explicitly mentions 'improving staff retention' as a primary objective - signals operational stress at the clinic level.",
+                "Job descriptions emphasize 'managing high patient volume' and 'proficiency with patient portal systems' - pointing to intake friction.",
             ],
             confidence="medium",
             sources=["https://www.indeed.com/cmp/Mainstreet-Family-Care/jobs"],

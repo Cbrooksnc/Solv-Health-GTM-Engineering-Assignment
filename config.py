@@ -36,7 +36,7 @@ SERPAPI_MAX_SEARCHES_PER_SIGNAL = 2
 GOOGLE_DOCS_ID = "1xyq-5l397SaX3cyhaOjekxGlFOFUo9X8HpgwUeXBe8g"
 
 # Claude model for brief generation
-CLAUDE_MODEL = "claude-sonnet-4-0"
+CLAUDE_MODEL = "claude-sonnet-4-6"
 
 # Brief generation settings
 BRIEF_MAX_TOKENS = 2000

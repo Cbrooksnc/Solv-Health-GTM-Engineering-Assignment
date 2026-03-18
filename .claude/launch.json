@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "demo",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["main.py", "--demo"],
+      "port": null
+    },
+    {
+      "name": "demo-with-briefs",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["main.py", "--demo", "--briefs"],
+      "port": null
+    },
+    {
+      "name": "live",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["main.py", "--companies-file", "accounts.txt", "--region", "Southeast", "--briefs"],
+      "port": null
+    }
+  ]
+}

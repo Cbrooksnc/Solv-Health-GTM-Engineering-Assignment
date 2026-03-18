@@ -250,7 +250,7 @@ def run_pipeline(
     print_header()
 
     if demo_mode:
-        console.print("[bold yellow]⚡ DEMO MODE[/bold yellow] — running with cached signal data (no API keys required)\n")
+        console.print("[bold yellow]⚡ DEMO MODE[/bold yellow] - running with cached signal data (no API keys required)\n")
         from demo_data import DEMO_ACCOUNTS, DEMO_SIGNALS
         accounts_raw = DEMO_ACCOUNTS
     else:
@@ -341,45 +341,62 @@ def _demo_brief_stub(acct: AccountScore) -> str:
     """Fallback brief when no ANTHROPIC_API_KEY is set in demo mode."""
     top_sig = acct.top_signals[0].replace("_", " ").title() if acct.top_signals else "Multiple signals"
     ehr = acct.detected_ehr or "Unknown EHR"
-    evidence = ""
-    for sig_name in acct.top_signals[:2]:
+
+    # Collect top evidence snippets across all fired signals
+    evidence_lines = []
+    pain_lines = []
+    for sig_name in acct.top_signals:
+        result = acct.signals.get(sig_name)
+        if result and result.score > 0.3 and result.evidence:
+            evidence_lines.append(f"- **{sig_name.replace('_', ' ').title()}:** {result.evidence[0]}")
+            if len(result.evidence) > 1:
+                pain_lines.append(f"- {result.evidence[1]}")
+        if len(evidence_lines) >= 4:
+            break
+
+    evidence_block = "\n".join(evidence_lines) if evidence_lines else "- Signal data not available"
+    pain_block = "\n".join(pain_lines) if pain_lines else "- Front desk overload and intake friction consistent with Solv's ICP"
+
+    # Build outreach using first real evidence snippet
+    first_evidence = ""
+    for sig_name in acct.top_signals[:3]:
         result = acct.signals.get(sig_name)
         if result and result.evidence:
-            evidence += f"\n- {result.evidence[0][:120]}"
+            first_evidence = result.evidence[0]
+            break
 
     return f"""## Company Snapshot
 **{acct.name}** is a multi-site urgent care operator in {acct.region} running **{ehr}**.
 Buying signal score: **{acct.score_pct}/100**.
 
 ## Why They're Likely to Buy Right Now
-Top signal detected: **{top_sig}** — indicating active operational pain that Solv directly addresses.
-{evidence}
+Top signal detected: **{top_sig}** - indicating active operational pain that Solv directly addresses.
+
+{evidence_block}
 
 ## Pain Points Detected
-Based on signal evidence, this account is experiencing front desk workflow friction,
-high inbound call volume, and intake delays consistent with Solv's ICP.
+{pain_block}
 
 ## Recommended Outreach Angle
-Lead with the specific operational pain detected — don't pitch product features.
+Lead with the specific operational pain detected - don't pitch product features.
 Reference what you found in reviews or job postings to establish credibility.
 
 ## Personalized Outreach Message
 
-Subject: {acct.name} — noticed something about your front desk
+Subject: {acct.name} - noticed something about your front desk
 
 Hi [Name],
 
-I came across {acct.name} while researching urgent care operations in {acct.region}.
-Noticed a few patterns — [specific evidence here] — that looked a lot like what
-we see when front desk teams are being asked to do more than their tools support.
+I came across {acct.name} while researching urgent care operations in {acct.region} and noticed something worth flagging: {first_evidence}
 
-Solv works with {ehr} groups to automate the intake and phone workflow that's
-creating that friction. Worth a 20-minute conversation to see if it's relevant?
+That pattern - front desk teams absorbing workflow friction that their tools aren't handling - is exactly where we see Solv make the fastest impact. We integrate directly with {ehr} to automate inbound calls and patient check-in, which typically cuts the front desk load by 50-60%.
+
+Worth a 20-minute conversation to see if the timing is right?
 
 [Your name]
 Solv Health
 
-_Note: Set ANTHROPIC_API_KEY to generate full AI-written briefs via Claude._"""
+_Note: Set ANTHROPIC_API_KEY in .env to generate full AI-written briefs via Claude._"""
 
 
 # ─────────────────────────────────────────────
@@ -388,7 +405,7 @@ _Note: Set ANTHROPIC_API_KEY to generate full AI-written briefs via Claude._"""
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Solv Health Account Intelligence — detect buying signals for urgent care operators",
+        description="Solv Health Account Intelligence - detect buying signals for urgent care operators",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -428,7 +445,7 @@ Examples:
     parser.add_argument(
         "--demo",
         action="store_true",
-        help="Run in demo mode with cached signal data — no API keys required",
+        help="Run in demo mode with cached signal data - no API keys required",
     )
     return parser.parse_args()
 
